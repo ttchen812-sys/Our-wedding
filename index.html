@@ -3,43 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的摄影作品集</title>
+    <title>Our Wedding - 婚礼影像</title>
     <style>
-        body { margin: 0; background: #1a1a1a; color: white; font-family: sans-serif; }
-        header { text-align: center; padding: 50px 20px; }
+        /* 基础样式：营造简约、高级的相册感 */
+        body { 
+            margin: 0; 
+            background: #fdfcfb; 
+            color: #5d5d5d; 
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; 
+        }
+        header { 
+            text-align: center; 
+            padding: 80px 20px; 
+            background: white; 
+        }
+        h1 { 
+            font-weight: 300; 
+            letter-spacing: 4px; 
+            color: #a68b7c; 
+            margin-bottom: 10px;
+        }
+        .subtitle { 
+            font-size: 14px; 
+            color: #bcaaa4; 
+            letter-spacing: 1px;
+        }
+        
+        /* 照片墙布局：自动适应屏幕宽度 */
         .gallery { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
             gap: 15px; 
-            padding: 15px;
+            padding: 15px; 
+            max-width: 1400px; 
+            margin: 0 auto;
         }
         .gallery img { 
             width: 100%; 
-            height: 400px; 
-            object-fit: cover; /* 自动裁剪成统一高度，非常整齐 */
+            height: auto; 
+            display: block; 
             border-radius: 4px;
-            transition: 0.3s;
-            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, opacity 0.4s;
+            background: #eee; /* 图片加载前的底色 */
         }
-        .gallery img:hover { filter: brightness(1.2); }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 14px; }
+        .gallery img:hover { 
+            transform: scale(1.02); 
+            opacity: 0.9;
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 100px 20px; 
+            color: #d7ccc8; 
+            font-size: 12px; 
+            letter-spacing: 2px;
+        }
+
+        /* 手机端适配：一行显示一张大图 */
+        @media (max-width: 600px) {
+            .gallery { 
+                grid-template-columns: 1fr; 
+                padding: 10px;
+            }
+            header { padding: 50px 20px; }
+        }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>姓名 · 摄影作品展</h1>
-        <p>捕捉瞬间的永恒</p>
+        <h1>OUR WEDDING</h1>
+        <div class="subtitle">捕捉爱与光影的瞬间</div>
     </header>
 
-    <div class="gallery">
-        <img src="images/1.webp">
-        <img src="images/2.webp">
-        <img src="images/3.webp">
-        <img src="images/4.webp">
-    </div>
+    <div class="gallery" id="wedding-gallery">
+        </div>
 
     <footer>
-        <p>© 2026 由 Gemini 辅助构建</p>
+        <p>FOR ETERNITY · 2026</p>
     </footer>
-</body>
-</html>
+
+    <script>
+        const container = document.getElementById('wedding-gallery');
+        
+        // 【核心修改处】
+        // 请把下面的 10 改成你 image 文件夹里实际的照片总数
+        const totalPhotos = 6; 
+
+        for (let i = 1; i <= total
