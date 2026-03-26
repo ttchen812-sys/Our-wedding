@@ -86,7 +86,7 @@
         const folder = 'image';
 
         // 从 GitHub 接口自动获取文件列表
-        fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`)
+        fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=main`)
             .then(response => response.json())
             .then(data => {
                 if (Array.isArray(data)) {
