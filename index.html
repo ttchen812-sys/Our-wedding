@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的摄影作品集</title>
+    <style>
+        body { margin: 0; background: #1a1a1a; color: white; font-family: sans-serif; }
+        header { text-align: center; padding: 50px 20px; }
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 15px; 
+            padding: 15px;
+        }
+        .gallery img { 
+            width: 100%; 
+            height: 400px; 
+            object-fit: cover; /* 自动裁剪成统一高度，非常整齐 */
+            border-radius: 4px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .gallery img:hover { filter: brightness(1.2); }
+        footer { text-align: center; padding: 40px; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>姓名 · 摄影作品展</h1>
+        <p>捕捉瞬间的永恒</p>
+    </header>
+
+    <div class="gallery">
+        <img src="images/1.webp">
+        <img src="images/2.webp">
+        <img src="images/3.webp">
+        <img src="images/4.webp">
+    </div>
+
+    <footer>
+        <p>© 2026 由 Gemini 辅助构建</p>
+    </footer>
+</body>
+</html>
