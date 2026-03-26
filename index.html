@@ -1,36 +1,36 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding</title>
-    <style>
-        body { margin: 0; background: #fdfcfb; text-align: center; font-family: sans-serif; }
-        header { padding: 60px 20px; }
-        h1 { color: #a68b7c; font-weight: 300; letter-spacing: 2px; }
-        .gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 15px; padding: 20px; max-width: 1000px; margin: 0 auto;
-        }
-        .gallery img { width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>OUR WEDDING</h1>
-        <p>捕捉爱与光影的瞬间</p>
-    </header>
+<script>
+    const container = document.getElementById('wedding-gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-    <div class="gallery">
-        <img src="image/1.webp.jpg">
-        <img src="image/2.webp.jpg">
-        <img src="image/3.webp.jpg">
-        <img src="image/4.webp.jpg">
-        <img src="image/5.webp.jpg">
-        <img src="image/6.webp.jpg">
-    </div>
+    // 直接告诉网页你的 GitHub 用户名和仓库名
+    const username = 'ttchen812-sys'; 
+    const repo = 'Our-wedding';
+    const folder = 'image';
 
-    <footer style="padding: 50px; color: #ccc;">FOR ETERNITY · 2026</footer>
-</body>
-</html>
+    // 自动获取 GitHub 文件夹里的所有文件列表
+    fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(file => {
+                // 只读取图片文件
+                if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                    const img = document.createElement('img');
+                    img.src = file.download_url; // 直接使用 GitHub 提供的下载地址
+                    img.className = 'zoomable';
+                    img.loading = 'lazy';
+                    
+                    img.onclick = function() {
+                        lightboxImg.src = this.src;
+                        lightbox.classList.add('active');
+                    }
+                    container.appendChild(img);
+                }
+            });
+        })
+        .catch(err => console.log('读取图片失败:', err));
+
+    lightbox.onclick = function() {
+        this.classList.remove('active');
+    }
+</script>
